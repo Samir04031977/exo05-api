@@ -1,0 +1,26 @@
+apiVersion: apps/v1  
+kind: Deployment 
+metadata: 
+  name: app-exo05-deployment
+spec: 
+  replicas: 5 
+  selector:
+    matchLabels:
+      app: exo05-api
+  template: 
+    metadata: 
+      labels: 
+        app: exo05-api
+    spec: 
+      containers: 
+        - name: exo05-api
+          image: samir1977/exo05-api:latest  
+          env:
+            - name: STORY_FOLDER
+              value: "story"
+          resources: 
+            limits: 
+              memory: "128Mi"  
+              cpu: "500m"  
+          ports:  
+            - containerPort: 80
