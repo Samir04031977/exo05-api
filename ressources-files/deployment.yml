@@ -12,15 +12,22 @@ spec:
       labels: 
         app: exo05-api
     spec: 
+      volumes:
+        - name: volume-story
+          emptyDir:
+            sizeLimit: "500M"
       containers: 
         - name: exo05-api
+          volumeMounts:
+            - mountPath: /story
+              name: volume-story
           image: samir1977/exo05-api:latest  
           env:
             - name: STORY_FOLDER
               value: "story"
           resources: 
             limits: 
-              memory: "128Mi"  
-              cpu: "500m"  
+              memory: "128Mi"
+              cpu: "500m"
           ports:  
             - containerPort: 80
